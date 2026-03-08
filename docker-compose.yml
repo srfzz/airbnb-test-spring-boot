@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: air_bnb_postgres_container
+    restart: always
+    ports:
+      - "55432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DB: air_bnb
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
