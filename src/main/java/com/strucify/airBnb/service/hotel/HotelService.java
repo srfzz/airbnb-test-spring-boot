@@ -12,4 +12,5 @@ public interface HotelService {
     Hoteldto partialUpdateHotelById(Long id,Hoteldto hoteldto);
     void setActiveHotel(Long hotelId);
 
+
 }

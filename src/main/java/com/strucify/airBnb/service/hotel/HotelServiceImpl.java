@@ -4,6 +4,7 @@ import com.strucify.airBnb.dto.hotelDto.Hoteldto;
 import com.strucify.airBnb.entity.Hotel;
 import com.strucify.airBnb.exceptions.ResourceNotFoundException;
 import com.strucify.airBnb.repository.HotelRepository;
+import com.strucify.airBnb.service.inventory.InventoryService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -15,10 +16,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class HotelServiceImpl implements HotelService {
     private final HotelRepository hotelRepository;
     private final ModelMapper modelMapper;
+    private final InventoryService inventoryService;
 
-    public HotelServiceImpl(HotelRepository hotelRepository, ModelMapper modelMapper) {
+    public HotelServiceImpl(HotelRepository hotelRepository, ModelMapper modelMapper, InventoryService inventoryService) {
         this.hotelRepository = hotelRepository;
         this.modelMapper = modelMapper;
+        this.inventoryService = inventoryService;
     }
 
     @Override
@@ -30,6 +33,7 @@ public class HotelServiceImpl implements HotelService {
 
         Hotel savedHotel=hotelRepository.save(hotel);
         log.info("Hotel saved successfully");
+
         return modelMapper.map(savedHotel, Hoteldto.class);
 
     }
@@ -79,6 +83,10 @@ public class HotelServiceImpl implements HotelService {
         hotel.setActive(!hotel.getActive());
         hotelRepository.save(hotel);
         /// TODO: create inventory for all rooms
+        if(hotel.getActive())
+        {
+            hotel.getRooms().forEach(inventoryService::initializeInventoryIfMissing);
+        }
     }
 
 

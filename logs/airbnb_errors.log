@@ -1,0 +1,332 @@
+2026-03-09 13:26:13 [main] INFO  c.strucify.airBnb.AirBnbApplication - Starting AirBnbApplication using Java 25.0.1 with PID 27776 (G:\java personal projects\airBnb\target\classes started by IMSRFZ in G:\java personal projects\airBnb)
+2026-03-09 13:26:13 [main] INFO  c.strucify.airBnb.AirBnbApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-09 13:26:13 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-09 13:26:13 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 36 ms. Found 3 JPA repository interfaces.
+2026-03-09 13:26:14 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-03-09 13:26:14 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-03-09 13:26:14 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-09 13:26:14 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.52]
+2026-03-09 13:26:14 [main] INFO  o.a.c.c.C.[.[localhost].[/api/v1] - Initializing Spring embedded WebApplicationContext
+2026-03-09 13:26:14 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1135 ms
+2026-03-09 13:26:14 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-09 13:26:14 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.42.Final
+2026-03-09 13:26:14 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-09 13:26:14 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-09 13:26:14 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-09 13:26:14 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7b7cf475
+2026-03-09 13:26:14 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-09 13:26:14 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-09 13:26:14 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.17
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-09 13:26:15 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-09 13:26:15 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 13:26:15 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-09 13:26:16 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-09 13:26:16 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-03-09 13:26:16 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-03-09 13:26:16 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api/v1'
+2026-03-09 13:26:16 [main] INFO  c.strucify.airBnb.AirBnbApplication - Started AirBnbApplication in 3.81 seconds (process running for 4.211)
+2026-03-09 13:26:16 [RMI TCP Connection(1)-172.29.192.1] INFO  o.a.c.c.C.[.[localhost].[/api/v1] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-09 13:26:16 [RMI TCP Connection(1)-172.29.192.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-09 13:26:16 [RMI TCP Connection(1)-172.29.192.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-03-09 13:27:14 [http-nio-8080-exec-7] INFO  c.s.a.c.room.RoomAdminController - RoomDto(id=null, type=Deluxe Sea View, basePrice=4500.50, photos=[https://strucify-assets.com/hotels/1/room_v1.jpg, https://strucify-assets.com/hotels/1/room_v2.jpg], amenities=[High-Speed WiFi, Air Conditioning, Mini Bar, Ocean View Balcony], totalCount=10, capacity=3)
+2026-03-09 13:27:14 [http-nio-8080-exec-7] INFO  c.s.a.service.room.RoomServiceImpl - RoomServiceImpl createRoom
+2026-03-09 13:27:14 [http-nio-8080-exec-7] INFO  c.s.a.service.room.RoomServiceImpl - RoomDto(id=null, type=Deluxe Sea View, basePrice=4500.50, photos=[https://strucify-assets.com/hotels/1/room_v1.jpg, https://strucify-assets.com/hotels/1/room_v2.jpg], amenities=[High-Speed WiFi, Air Conditioning, Mini Bar, Ocean View Balcony], totalCount=10, capacity=3)
+2026-03-09 13:29:46 [http-nio-8080-exec-6] INFO  c.s.a.c.room.RoomAdminController - RoomDto(id=null, type=Standard Single, basePrice=1200.00, photos=[https://strucify-assets.com/hotels/1/standard_1.jpg], amenities=[WiFi, Fan, Shared Bathroom], totalCount=20, capacity=1)
+2026-03-09 13:29:46 [http-nio-8080-exec-6] INFO  c.s.a.service.room.RoomServiceImpl - RoomServiceImpl createRoom
+2026-03-09 13:29:46 [http-nio-8080-exec-6] INFO  c.s.a.service.room.RoomServiceImpl - RoomDto(id=null, type=Standard Single, basePrice=1200.00, photos=[https://strucify-assets.com/hotels/1/standard_1.jpg], amenities=[WiFi, Fan, Shared Bathroom], totalCount=20, capacity=1)
+2026-03-09 13:29:55 [http-nio-8080-exec-5] INFO  c.s.a.c.room.RoomAdminController - RoomDto(id=null, type=Presidential Suite, basePrice=25000.99, photos=[https://strucify-assets.com/hotels/1/suite_main.jpg, https://strucify-assets.com/hotels/1/suite_bath.jpg, https://strucify-assets.com/hotels/1/suite_view.jpg], amenities=[Private Pool, Jacuzzi, 24/7 Butler Service, Kitchenette, Smart Home Controls, Wine Cellar], totalCount=2, capacity=6)
+2026-03-09 13:29:55 [http-nio-8080-exec-5] INFO  c.s.a.service.room.RoomServiceImpl - RoomServiceImpl createRoom
+2026-03-09 13:29:55 [http-nio-8080-exec-5] INFO  c.s.a.service.room.RoomServiceImpl - RoomDto(id=null, type=Presidential Suite, basePrice=25000.99, photos=[https://strucify-assets.com/hotels/1/suite_main.jpg, https://strucify-assets.com/hotels/1/suite_bath.jpg, https://strucify-assets.com/hotels/1/suite_view.jpg], amenities=[Private Pool, Jacuzzi, 24/7 Butler Service, Kitchenette, Smart Home Controls, Wine Cellar], totalCount=2, capacity=6)
+2026-03-09 13:30:03 [http-nio-8080-exec-2] INFO  c.s.a.c.room.RoomAdminController - RoomDto(id=null, type=Family Garden Villa, basePrice=8500.00, photos=[https://strucify-assets.com/hotels/1/villa_garden.jpg], amenities=[King Bed, Two Bunk Beds, Garden Access, Microwave, Playstation 5], totalCount=5, capacity=5)
+2026-03-09 13:30:03 [http-nio-8080-exec-2] INFO  c.s.a.service.room.RoomServiceImpl - RoomServiceImpl createRoom
+2026-03-09 13:30:03 [http-nio-8080-exec-2] INFO  c.s.a.service.room.RoomServiceImpl - RoomDto(id=null, type=Family Garden Villa, basePrice=8500.00, photos=[https://strucify-assets.com/hotels/1/villa_garden.jpg], amenities=[King Bed, Two Bunk Beds, Garden Access, Microwave, Playstation 5], totalCount=5, capacity=5)
+2026-03-09 13:30:22 [http-nio-8080-exec-8] INFO  c.s.a.c.room.RoomAdminController - RoomDto(id=null, type=Family Garden Villa, basePrice=8500.00, photos=[https://strucify-assets.com/hotels/1/villa_garden.jpg], amenities=[King Bed, Two Bunk Beds, Garden Access, Microwave, Playstation 5], totalCount=5, capacity=5)
+2026-03-09 13:30:22 [http-nio-8080-exec-8] INFO  c.s.a.service.room.RoomServiceImpl - RoomServiceImpl createRoom
+2026-03-09 13:30:22 [http-nio-8080-exec-8] INFO  c.s.a.service.room.RoomServiceImpl - RoomDto(id=null, type=Family Garden Villa, basePrice=8500.00, photos=[https://strucify-assets.com/hotels/1/villa_garden.jpg], amenities=[King Bed, Two Bunk Beds, Garden Access, Microwave, Playstation 5], totalCount=5, capacity=5)
+2026-03-09 13:30:34 [http-nio-8080-exec-3] INFO  c.s.a.c.room.RoomAdminController - RoomDto(id=null, type=Presidential Suite, basePrice=25000.99, photos=[https://strucify-assets.com/hotels/1/suite_main.jpg, https://strucify-assets.com/hotels/1/suite_bath.jpg, https://strucify-assets.com/hotels/1/suite_view.jpg], amenities=[Private Pool, Jacuzzi, 24/7 Butler Service, Kitchenette, Smart Home Controls, Wine Cellar], totalCount=2, capacity=6)
+2026-03-09 13:30:34 [http-nio-8080-exec-3] INFO  c.s.a.service.room.RoomServiceImpl - RoomServiceImpl createRoom
+2026-03-09 13:30:34 [http-nio-8080-exec-3] INFO  c.s.a.service.room.RoomServiceImpl - RoomDto(id=null, type=Presidential Suite, basePrice=25000.99, photos=[https://strucify-assets.com/hotels/1/suite_main.jpg, https://strucify-assets.com/hotels/1/suite_bath.jpg, https://strucify-assets.com/hotels/1/suite_view.jpg], amenities=[Private Pool, Jacuzzi, 24/7 Butler Service, Kitchenette, Smart Home Controls, Wine Cellar], totalCount=2, capacity=6)
+2026-03-09 13:30:54 [http-nio-8080-exec-10] INFO  c.s.a.service.room.RoomServiceImpl - RoomServiceImpl gertAllRoomInHotel
+2026-03-09 13:31:54 [http-nio-8080-exec-7] INFO  c.s.a.c.room.RoomAdminController - RoomDto(id=null, type=Presidential Suite, basePrice=25000.99, photos=[https://strucify-assets.com/hotels/1/suite_main.jpg, https://strucify-assets.com/hotels/1/suite_bath.jpg, https://strucify-assets.com/hotels/1/suite_view.jpg], amenities=[Private Pool, Jacuzzi, 24/7 Butler Service, Kitchenette, Smart Home Controls, Wine Cellar], totalCount=2, capacity=6)
+2026-03-09 13:31:54 [http-nio-8080-exec-7] INFO  c.s.a.service.room.RoomServiceImpl - RoomServiceImpl createRoom
+2026-03-09 13:31:54 [http-nio-8080-exec-7] INFO  c.s.a.service.room.RoomServiceImpl - RoomDto(id=null, type=Presidential Suite, basePrice=25000.99, photos=[https://strucify-assets.com/hotels/1/suite_main.jpg, https://strucify-assets.com/hotels/1/suite_bath.jpg, https://strucify-assets.com/hotels/1/suite_view.jpg], amenities=[Private Pool, Jacuzzi, 24/7 Butler Service, Kitchenette, Smart Home Controls, Wine Cellar], totalCount=2, capacity=6)
+2026-03-09 13:32:03 [http-nio-8080-exec-4] INFO  c.s.a.c.room.RoomAdminController - RoomDto(id=null, type=Family Garden Villa, basePrice=8500.00, photos=[https://strucify-assets.com/hotels/1/villa_garden.jpg], amenities=[King Bed, Two Bunk Beds, Garden Access, Microwave, Playstation 5], totalCount=5, capacity=5)
+2026-03-09 13:32:03 [http-nio-8080-exec-4] INFO  c.s.a.service.room.RoomServiceImpl - RoomServiceImpl createRoom
+2026-03-09 13:32:03 [http-nio-8080-exec-4] INFO  c.s.a.service.room.RoomServiceImpl - RoomDto(id=null, type=Family Garden Villa, basePrice=8500.00, photos=[https://strucify-assets.com/hotels/1/villa_garden.jpg], amenities=[King Bed, Two Bunk Beds, Garden Access, Microwave, Playstation 5], totalCount=5, capacity=5)
+2026-03-09 13:32:10 [http-nio-8080-exec-6] INFO  c.s.a.c.room.RoomAdminController - RoomDto(id=null, type=Standard Single, basePrice=1200.00, photos=[https://strucify-assets.com/hotels/1/standard_1.jpg], amenities=[WiFi, Fan, Shared Bathroom], totalCount=20, capacity=1)
+2026-03-09 13:32:10 [http-nio-8080-exec-6] INFO  c.s.a.service.room.RoomServiceImpl - RoomServiceImpl createRoom
+2026-03-09 13:32:10 [http-nio-8080-exec-6] INFO  c.s.a.service.room.RoomServiceImpl - RoomDto(id=null, type=Standard Single, basePrice=1200.00, photos=[https://strucify-assets.com/hotels/1/standard_1.jpg], amenities=[WiFi, Fan, Shared Bathroom], totalCount=20, capacity=1)
+2026-03-09 14:31:04 [http-nio-8080-exec-8] INFO  c.s.a.c.hotel.HotelController - Toggle hotel active status 2
+2026-03-09 14:31:07 [http-nio-8080-exec-3] INFO  c.s.a.c.hotel.HotelController - Toggle hotel active status 2
+2026-03-09 14:31:41 [http-nio-8080-exec-10] INFO  c.s.a.c.hotel.HotelController - Toggle hotel active status 2
+2026-03-09 14:32:06 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-09 14:32:06 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-03-09 14:32:06 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 14:32:06 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-03-09 14:32:06 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-03-09 14:32:09 [main] INFO  c.strucify.airBnb.AirBnbApplication - Starting AirBnbApplication using Java 25.0.1 with PID 18860 (G:\java personal projects\airBnb\target\classes started by IMSRFZ in G:\java personal projects\airBnb)
+2026-03-09 14:32:09 [main] INFO  c.strucify.airBnb.AirBnbApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-09 14:32:10 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-09 14:32:10 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 45 ms. Found 3 JPA repository interfaces.
+2026-03-09 14:32:10 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-03-09 14:32:10 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-03-09 14:32:10 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-09 14:32:10 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.52]
+2026-03-09 14:32:10 [main] INFO  o.a.c.c.C.[.[localhost].[/api/v1] - Initializing Spring embedded WebApplicationContext
+2026-03-09 14:32:10 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1083 ms
+2026-03-09 14:32:10 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-09 14:32:10 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.42.Final
+2026-03-09 14:32:10 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-09 14:32:10 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-09 14:32:10 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-09 14:32:11 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@390a7532
+2026-03-09 14:32:11 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-09 14:32:11 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-09 14:32:11 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.17
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-09 14:32:11 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-09 14:32:12 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 14:32:12 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-09 14:32:12 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-09 14:32:12 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-03-09 14:32:12 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-03-09 14:32:12 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api/v1'
+2026-03-09 14:32:12 [main] INFO  c.strucify.airBnb.AirBnbApplication - Started AirBnbApplication in 3.88 seconds (process running for 4.288)
+2026-03-09 14:32:13 [RMI TCP Connection(4)-172.29.192.1] INFO  o.a.c.c.C.[.[localhost].[/api/v1] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-09 14:32:13 [RMI TCP Connection(4)-172.29.192.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-09 14:32:13 [RMI TCP Connection(4)-172.29.192.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-03-09 15:10:02 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=33m21s527ms181µs700ns).
+2026-03-09 15:10:06 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-09 15:10:06 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-03-09 15:10:06 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 15:10:06 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-03-09 15:10:06 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-03-09 15:10:08 [main] INFO  c.strucify.airBnb.AirBnbApplication - Starting AirBnbApplication using Java 25.0.1 with PID 14588 (G:\java personal projects\airBnb\target\classes started by IMSRFZ in G:\java personal projects\airBnb)
+2026-03-09 15:10:08 [main] INFO  c.strucify.airBnb.AirBnbApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-09 15:10:08 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-09 15:10:08 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 60 ms. Found 3 JPA repository interfaces.
+2026-03-09 15:10:09 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-03-09 15:10:09 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-03-09 15:10:09 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-09 15:10:09 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.52]
+2026-03-09 15:10:09 [main] INFO  o.a.c.c.C.[.[localhost].[/api/v1] - Initializing Spring embedded WebApplicationContext
+2026-03-09 15:10:09 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1075 ms
+2026-03-09 15:10:09 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-09 15:10:09 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.42.Final
+2026-03-09 15:10:09 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-09 15:10:09 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-09 15:10:09 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-09 15:10:09 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@390a7532
+2026-03-09 15:10:09 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-09 15:10:09 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-09 15:10:09 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.17
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-09 15:10:10 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-09 15:10:10 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 15:10:10 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-09 15:10:11 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-09 15:10:11 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-03-09 15:10:11 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-03-09 15:10:11 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api/v1'
+2026-03-09 15:10:11 [main] INFO  c.strucify.airBnb.AirBnbApplication - Started AirBnbApplication in 3.778 seconds (process running for 4.49)
+2026-03-09 15:10:11 [RMI TCP Connection(2)-172.29.192.1] INFO  o.a.c.c.C.[.[localhost].[/api/v1] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-09 15:10:11 [RMI TCP Connection(2)-172.29.192.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-09 15:10:11 [RMI TCP Connection(2)-172.29.192.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-03-09 15:12:48 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-09 15:12:48 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-03-09 15:12:48 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 15:12:48 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-03-09 15:12:48 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-03-09 15:12:51 [main] INFO  c.strucify.airBnb.AirBnbApplication - Starting AirBnbApplication using Java 25.0.1 with PID 38288 (G:\java personal projects\airBnb\target\classes started by IMSRFZ in G:\java personal projects\airBnb)
+2026-03-09 15:12:51 [main] INFO  c.strucify.airBnb.AirBnbApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-09 15:12:52 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-09 15:12:52 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 46 ms. Found 3 JPA repository interfaces.
+2026-03-09 15:12:52 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-03-09 15:12:52 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-03-09 15:12:52 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-09 15:12:52 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.52]
+2026-03-09 15:12:52 [main] INFO  o.a.c.c.C.[.[localhost].[/api/v1] - Initializing Spring embedded WebApplicationContext
+2026-03-09 15:12:52 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 935 ms
+2026-03-09 15:12:53 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-09 15:12:53 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.42.Final
+2026-03-09 15:12:53 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-09 15:12:53 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-09 15:12:53 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-09 15:12:53 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5a57cf90
+2026-03-09 15:12:53 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-09 15:12:53 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-09 15:12:53 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.17
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-09 15:12:54 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-09 15:12:54 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 15:12:54 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-09 15:12:54 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-09 15:12:55 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-03-09 15:12:55 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-03-09 15:12:55 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api/v1'
+2026-03-09 15:12:55 [main] INFO  c.strucify.airBnb.AirBnbApplication - Started AirBnbApplication in 3.695 seconds (process running for 4.105)
+2026-03-09 15:12:55 [RMI TCP Connection(1)-172.29.192.1] INFO  o.a.c.c.C.[.[localhost].[/api/v1] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-09 15:12:55 [RMI TCP Connection(1)-172.29.192.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-09 15:12:55 [RMI TCP Connection(1)-172.29.192.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-03-09 15:13:21 [http-nio-8080-exec-2] INFO  c.s.a.c.hotel.HotelController - Toggle hotel active status 2
+2026-03-09 15:13:37 [http-nio-8080-exec-5] INFO  c.s.a.c.hotel.HotelController - Toggle hotel active status 2
+2026-03-09 15:14:35 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-09 15:14:35 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-03-09 15:14:35 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 15:14:35 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-03-09 15:14:35 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-03-09 15:14:38 [main] INFO  c.strucify.airBnb.AirBnbApplication - Starting AirBnbApplication using Java 25.0.1 with PID 10724 (G:\java personal projects\airBnb\target\classes started by IMSRFZ in G:\java personal projects\airBnb)
+2026-03-09 15:14:38 [main] INFO  c.strucify.airBnb.AirBnbApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-09 15:14:39 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-09 15:14:39 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 35 ms. Found 3 JPA repository interfaces.
+2026-03-09 15:14:39 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-03-09 15:14:39 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-03-09 15:14:39 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-09 15:14:39 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.52]
+2026-03-09 15:14:39 [main] INFO  o.a.c.c.C.[.[localhost].[/api/v1] - Initializing Spring embedded WebApplicationContext
+2026-03-09 15:14:39 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 862 ms
+2026-03-09 15:14:39 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-09 15:14:39 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.42.Final
+2026-03-09 15:14:39 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-09 15:14:40 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-09 15:14:40 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-09 15:14:40 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@14499b52
+2026-03-09 15:14:40 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-09 15:14:40 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-09 15:14:40 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.17
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-09 15:14:40 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-09 15:14:41 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 15:14:41 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-09 15:14:41 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-09 15:14:41 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-03-09 15:14:41 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-03-09 15:14:41 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api/v1'
+2026-03-09 15:14:41 [main] INFO  c.strucify.airBnb.AirBnbApplication - Started AirBnbApplication in 3.357 seconds (process running for 3.761)
+2026-03-09 15:14:42 [RMI TCP Connection(1)-172.29.192.1] INFO  o.a.c.c.C.[.[localhost].[/api/v1] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-09 15:14:42 [RMI TCP Connection(1)-172.29.192.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-09 15:14:42 [RMI TCP Connection(1)-172.29.192.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-03-09 15:14:58 [http-nio-8080-exec-2] INFO  c.s.a.c.hotel.HotelController - Toggle hotel active status 2
+2026-03-09 15:15:15 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-09 15:15:15 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-03-09 15:15:15 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 15:15:15 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-03-09 15:15:15 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-03-09 15:15:18 [main] INFO  c.strucify.airBnb.AirBnbApplication - Starting AirBnbApplication using Java 25.0.1 with PID 16864 (G:\java personal projects\airBnb\target\classes started by IMSRFZ in G:\java personal projects\airBnb)
+2026-03-09 15:15:18 [main] INFO  c.strucify.airBnb.AirBnbApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-09 15:15:18 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-09 15:15:18 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 31 ms. Found 3 JPA repository interfaces.
+2026-03-09 15:15:19 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-03-09 15:15:19 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-03-09 15:15:19 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-09 15:15:19 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.52]
+2026-03-09 15:15:19 [main] INFO  o.a.c.c.C.[.[localhost].[/api/v1] - Initializing Spring embedded WebApplicationContext
+2026-03-09 15:15:19 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 877 ms
+2026-03-09 15:15:19 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-09 15:15:19 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.42.Final
+2026-03-09 15:15:19 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-09 15:15:19 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-09 15:15:19 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-09 15:15:19 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@552088cc
+2026-03-09 15:15:19 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-09 15:15:19 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-09 15:15:19 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.17
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-09 15:15:20 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-09 15:15:20 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 15:15:20 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-09 15:15:21 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-09 15:15:21 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-03-09 15:15:21 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-03-09 15:15:21 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api/v1'
+2026-03-09 15:15:21 [main] INFO  c.strucify.airBnb.AirBnbApplication - Started AirBnbApplication in 3.793 seconds (process running for 4.185)
+2026-03-09 15:15:22 [RMI TCP Connection(4)-172.29.192.1] INFO  o.a.c.c.C.[.[localhost].[/api/v1] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-09 15:15:22 [RMI TCP Connection(4)-172.29.192.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-09 15:15:22 [RMI TCP Connection(4)-172.29.192.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-03-09 15:15:27 [http-nio-8080-exec-1] INFO  c.s.a.c.hotel.HotelController - Toggle hotel active status 2
+2026-03-09 15:15:48 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-09 15:15:48 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-03-09 15:15:48 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 15:15:48 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-03-09 15:15:48 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-03-09 15:15:51 [main] INFO  c.strucify.airBnb.AirBnbApplication - Starting AirBnbApplication using Java 25.0.1 with PID 31340 (G:\java personal projects\airBnb\target\classes started by IMSRFZ in G:\java personal projects\airBnb)
+2026-03-09 15:15:51 [main] INFO  c.strucify.airBnb.AirBnbApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-09 15:15:52 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-09 15:15:52 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 31 ms. Found 3 JPA repository interfaces.
+2026-03-09 15:15:52 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-03-09 15:15:52 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-03-09 15:15:52 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-09 15:15:52 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.52]
+2026-03-09 15:15:52 [main] INFO  o.a.c.c.C.[.[localhost].[/api/v1] - Initializing Spring embedded WebApplicationContext
+2026-03-09 15:15:52 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 857 ms
+2026-03-09 15:15:52 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-09 15:15:52 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.42.Final
+2026-03-09 15:15:52 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-09 15:15:53 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-09 15:15:53 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-09 15:15:53 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@390a7532
+2026-03-09 15:15:53 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-09 15:15:53 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-09 15:15:53 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.17
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-09 15:15:53 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-09 15:15:54 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 15:15:54 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-09 15:15:54 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-09 15:15:55 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-03-09 15:15:55 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-03-09 15:15:55 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api/v1'
+2026-03-09 15:15:55 [main] INFO  c.strucify.airBnb.AirBnbApplication - Started AirBnbApplication in 3.893 seconds (process running for 4.284)
+2026-03-09 15:15:55 [RMI TCP Connection(3)-172.29.192.1] INFO  o.a.c.c.C.[.[localhost].[/api/v1] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-09 15:15:55 [RMI TCP Connection(3)-172.29.192.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-09 15:15:55 [RMI TCP Connection(3)-172.29.192.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-03-09 15:16:04 [http-nio-8080-exec-3] INFO  c.s.a.c.hotel.HotelController - Toggle hotel active status 2
+2026-03-09 15:16:10 [http-nio-8080-exec-2] INFO  c.s.a.c.hotel.HotelController - Toggle hotel active status 2
+2026-03-09 15:20:45 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-09 15:20:45 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-03-09 15:20:45 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-09 15:20:45 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-03-09 15:20:45 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

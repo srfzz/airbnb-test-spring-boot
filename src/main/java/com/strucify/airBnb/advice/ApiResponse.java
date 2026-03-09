@@ -20,6 +20,7 @@ public class ApiResponse<T> {
         this.data = data;
     }
    public ApiResponse(ApiError apiError) {
+        this();
         this.apiError = apiError;
    }
 }

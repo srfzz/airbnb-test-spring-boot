@@ -79,7 +79,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ApiResponse<?>> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
         String rootMessage=ex.getRootCause().getMessage() != null ? ex.getRootCause().getMessage() : ex.getMessage();
-        String userMessage="Database Operation failed";
+        String userMessage="Database Operation failed"+ex.getMessage();
         HttpStatus status=HttpStatus.BAD_REQUEST;
         if (rootMessage.contains("uk_") || rootMessage.contains("unique")) {
             userMessage = "A record with this information already exists.";
@@ -90,7 +90,6 @@ public class GlobalExceptionHandler {
         ApiError apiError = ApiError.builder()
                 .status(status)
                 .message(userMessage)
-                // Optional: Put the raw message in subErrors only for dev environment
                 .build();
         return buildErrorResponseEntity(apiError);
 

@@ -3,6 +3,7 @@ package com.strucify.airBnb.entity;
 import com.strucify.airBnb.entity.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -44,6 +45,7 @@ public class User {
       private List<Hotel> hotels;
 
     @Column(nullable = false, updatable = false)
+    @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate
     private LocalDateTime updatedAt;

@@ -9,7 +9,7 @@ public interface RoomService {
     RoomDto createRoom(Long hotelId,RoomDto roomDto);
     List<RoomDto> gertAllRoomInHotel(Long hotelId);
     RoomDto getByRoomId(Long roomId);
-    RoomDto updateRoomById(Long id,RoomDto roomDto);
+    RoomDto updateRoomById(Long roomId,RoomDto roomDto);
     void deleteRoomlById(Long id);
     RoomDto partialUpdateRoomById(Long id,RoomDto roomDto);
 //    void setActiveRoom(Long roomId);

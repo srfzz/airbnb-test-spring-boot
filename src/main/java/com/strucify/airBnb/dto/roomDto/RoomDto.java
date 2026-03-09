@@ -8,7 +8,6 @@ import java.util.List;
 @Data
 public class RoomDto {
     private Long id;
-    private Hotel hotel;
     private String type;
     private BigDecimal basePrice;
     private List<String> photos;

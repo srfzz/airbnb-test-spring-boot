@@ -53,7 +53,8 @@ public class Inventory {
      private String city;
 
     @Column(nullable = false)
-     private Boolean closed;
+    @Builder.Default
+     private Boolean closed=false;
 
     @CreatedDate
      private LocalDateTime createdAt;

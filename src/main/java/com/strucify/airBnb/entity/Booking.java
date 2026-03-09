@@ -4,6 +4,7 @@ import com.strucify.airBnb.entity.enums.BookingStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.action.internal.OrphanRemovalAction;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -61,6 +62,7 @@ public class Booking {
     private Set<Guest> guests;
 
     @Column(nullable = false, updatable = false)
+    @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate
     private LocalDateTime updatedAt;
