@@ -21,7 +21,7 @@ import java.util.List;
 public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
     private String name;
@@ -48,6 +48,7 @@ public class Hotel {
     @ToString.Exclude
     private List<Booking> bookings ;
 
+    @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
     @LastModifiedDate
@@ -58,6 +59,10 @@ public class Hotel {
 
     @Column(nullable = false)
     private Boolean active;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private User owner;
 
 
 }

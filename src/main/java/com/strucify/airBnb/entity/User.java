@@ -39,7 +39,9 @@ public class User {
     @ToString.Exclude
     private List<Guest> guests;
 
-
+      @OneToMany(mappedBy = "owner",fetch = FetchType.LAZY)
+      @ToString.Exclude
+      private List<Hotel> hotels;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
