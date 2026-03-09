@@ -13,6 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -41,31 +42,49 @@ public class RoomServiceImpl implements RoomService{
 
     @Override
     public List<RoomDto> gertAllRoomInHotel(Long hotelId) {
-        return List.of();
+       log.info("RoomServiceImpl gertAllRoomInHotel");
+        Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(()-> new ResourceNotFoundException("Hotel not found"));
+        if(hotel.getRooms()==null){
+            throw new ResourceNotFoundException("Throw No rooms in This hotel");
+        }
+        List<Room> rooms =roomRepository.getRoomsByHotelId(hotelId);
+        return rooms.stream().map(r->modelMapper.map(r,RoomDto.class)).collect(Collectors.toList());
+
     }
 
     @Override
     public RoomDto getByRoomId(Long roomId) {
-        return null;
+        Room room = roomRepository.findById(roomId).orElseThrow(()-> new ResourceNotFoundException("Room not found"));
+        return modelMapper.map(room,RoomDto.class);
     }
 
     @Override
     public RoomDto updateRoomById(Long id, RoomDto roomDto) {
-        return null;
+        Room room = roomRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Room not found"));
+       modelMapper.map(room,roomDto);
+       roomRepository.save(room);
+        return modelMapper.map(room,RoomDto.class);
+
     }
 
     @Override
     public void deleteRoomlById(Long id) {
-
+        Room room = roomRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Room not found"));
+        roomRepository.delete(room);
     }
 
     @Override
     public RoomDto partialUpdateRoomById(Long id, RoomDto roomDto) {
-        return null;
+        Room room = roomRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Room not found"));
+        modelMapper.map(room,roomDto);
+        roomRepository.save(room);
+        return modelMapper.map(room,RoomDto.class);
     }
 
-    @Override
-    public void setActiveRoom(Long roomId) {
-
-    }
+//    @Override
+//    public void setActiveRoom(Long roomId) {
+//        Room room = roomRepository.findById(roomId).orElseThrow(()-> new ResourceNotFoundException("Room not found"));
+//
+//
+//    }
 }

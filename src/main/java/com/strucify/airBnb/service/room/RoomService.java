@@ -12,7 +12,7 @@ public interface RoomService {
     RoomDto updateRoomById(Long id,RoomDto roomDto);
     void deleteRoomlById(Long id);
     RoomDto partialUpdateRoomById(Long id,RoomDto roomDto);
-    void setActiveRoom(Long roomId);
+//    void setActiveRoom(Long roomId);
 
 
 }
