@@ -96,6 +96,30 @@ public class BookingServiceImpl implements BookingService {
         return modelMapper.map(booking, BookingDto.class);
     }
 
+    @Override
+    @Transactional
+    public void cancelExpiredBooking(Booking booking) {
+        log.info("Cancelling expired booking id: {}", booking.getId());
+        booking.setStatus(BookingStatus.EXPIRED);
+        bookingRepository.save(booking);
+        List<Inventory> inventories = inventoryRepository.findAndLockAvailableInventory(
+                booking.getHotel().getId(),
+                booking.getRoom().getId(),
+                booking.getCheckInDate(),
+                booking.getCheckOutDate(),
+                0
+        );
+
+       
+        inventories.forEach(inventory -> {
+            int updatedReservedCount = inventory.getReservedCount() - booking.getRoomsCount();
+            inventory.setReservedCount(Math.max(0, updatedReservedCount)); // Safety check to never go below 0
+        });
+
+        inventoryRepository.saveAll(inventories);
+        log.info("Inventory freed for expired booking id: {}", booking.getId());
+    }
+
     public boolean hasBookingExpired(Booking booking) {
         return booking.getCreatedAt().plusMinutes(10).isBefore(LocalDateTime.now());
     }
