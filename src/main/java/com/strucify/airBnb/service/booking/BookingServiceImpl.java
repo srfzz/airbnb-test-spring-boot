@@ -6,16 +6,14 @@ import com.strucify.airBnb.dto.guests.GuestDto;
 import com.strucify.airBnb.entity.*;
 import com.strucify.airBnb.entity.enums.BookingStatus;
 import com.strucify.airBnb.exceptions.ResourceNotFoundException;
-import com.strucify.airBnb.repository.BookingRepository;
-import com.strucify.airBnb.repository.HotelRepository;
-import com.strucify.airBnb.repository.InventoryRepository;
-import com.strucify.airBnb.repository.RoomRepository;
+import com.strucify.airBnb.repository.*;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
@@ -28,13 +26,15 @@ public class BookingServiceImpl implements BookingService {
     private final RoomRepository roomRepository;
     private final InventoryRepository inventoryRepository;
     private final ModelMapper modelMapper;
+    private final GuestRepository guestRepository;
 
-    public BookingServiceImpl(BookingRepository bookingRepository, HotelRepository hotelRepository, RoomRepository roomRepository, InventoryRepository inventoryRepository, ModelMapper modelMapper) {
+    public BookingServiceImpl(BookingRepository bookingRepository, HotelRepository hotelRepository, RoomRepository roomRepository, InventoryRepository inventoryRepository, ModelMapper modelMapper, GuestRepository guestRepository) {
         this.bookingRepository = bookingRepository;
         this.hotelRepository = hotelRepository;
         this.roomRepository = roomRepository;
         this.inventoryRepository = inventoryRepository;
         this.modelMapper = modelMapper;
+        this.guestRepository = guestRepository;
     }
 
     @Override
@@ -73,7 +73,37 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public BookingDto addGuests(Long bookingId, GuestDto guestDto) {
-        return null;
+    public BookingDto addGuests(Long bookingId, List<GuestDto> guestDto) {
+        log.info("BookingServiceImpl addGuests");
+        Booking booking = bookingRepository.findById(bookingId).orElseThrow(() -> new ResourceNotFoundException("Booking not found id:" + bookingId));
+        if (hasBookingExpired(booking)) {
+            throw new IllegalStateException("Booking has expired !");
+        }
+        if (booking.getStatus() != BookingStatus.RESERVED) {
+            throw new IllegalStateException("Booking is not Under State ,Cannot Add Guests  !");
+        }
+
+        List<Guest> guests = guestDto.stream().map(
+                dto -> {
+                    Guest guest = modelMapper.map(dto, Guest.class);
+                    guest.setUser(returncurrentUser());
+                    return guest;
+                }
+        ).toList();
+        List<Guest> savedGuests = guestRepository.saveAll(guests);
+        booking.getGuests().addAll(savedGuests);
+        bookingRepository.save(booking);
+        return modelMapper.map(booking, BookingDto.class);
+    }
+
+    public boolean hasBookingExpired(Booking booking) {
+        return booking.getCreatedAt().plusMinutes(10).isBefore(LocalDateTime.now());
+    }
+
+    public User returncurrentUser() {
+        User user = User.builder()
+                .id(1L)
+                .build();
+        return user;
     }
 }

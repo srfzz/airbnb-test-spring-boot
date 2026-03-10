@@ -8,6 +8,8 @@ import com.strucify.airBnb.service.booking.BookingService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/bookings")
 public class BookingController {
@@ -25,7 +27,7 @@ public class BookingController {
     }
 
     @PostMapping("/{bookingId}/addguests")
-    public ResponseEntity<BookingDto> addGuests(@RequestBody GuestDto guestDto, @PathVariable("bookingId") Long bookingId) {
+    public ResponseEntity<BookingDto> addGuests(@RequestBody List<GuestDto> guestDto, @PathVariable("bookingId") Long bookingId) {
         return ResponseEntity.ok(bookingService.addGuests(bookingId, guestDto));
     }
 }
