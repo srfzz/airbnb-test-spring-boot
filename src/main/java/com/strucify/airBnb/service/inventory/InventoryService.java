@@ -1,6 +1,9 @@
 package com.strucify.airBnb.service.inventory;
 
+import com.strucify.airBnb.dto.HotelSearch.HotelSearchRequestDto;
+import com.strucify.airBnb.dto.hotelDto.Hoteldto;
 import com.strucify.airBnb.entity.Room;
+import org.springframework.data.domain.Page;
 
 public interface InventoryService {
 
@@ -9,4 +12,6 @@ public interface InventoryService {
 
 
     void deleteFutureInventory(Long roomId);
+
+    Page<Hoteldto> searchHotels(HotelSearchRequestDto hotelSearchRequestDto);
 }

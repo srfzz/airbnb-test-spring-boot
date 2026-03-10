@@ -1,14 +1,22 @@
 package com.strucify.airBnb.service.inventory;
 
+import com.strucify.airBnb.dto.HotelSearch.HotelSearchRequestDto;
+import com.strucify.airBnb.dto.hotelDto.Hoteldto;
+import com.strucify.airBnb.entity.Hotel;
 import com.strucify.airBnb.entity.Inventory;
 import com.strucify.airBnb.entity.Room;
 import com.strucify.airBnb.repository.InventoryRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,9 +26,11 @@ import java.util.stream.Collectors;
 @Slf4j
 public class InventoryServiceImpl implements InventoryService {
     private final InventoryRepository inventoryRepository;
+    private final ModelMapper modelMapper;
 
-    public InventoryServiceImpl(InventoryRepository inventoryRepository) {
+    public InventoryServiceImpl(InventoryRepository inventoryRepository, ModelMapper modelMapper) {
         this.inventoryRepository = inventoryRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -55,7 +65,7 @@ public class InventoryServiceImpl implements InventoryService {
                 .findFirstByRoomOrderByDateDesc(room);
         LocalDate startDate=today;
         if(lastInventory.isPresent()) {
-            startDate=lastInventory.get().getDate();
+            startDate=lastInventory.get().getDate().plusDays(1);
         }
         if(startDate.isAfter(endDate)) {
             log.info("Inventory already exists for room {}", room.getId());
@@ -87,5 +97,14 @@ public class InventoryServiceImpl implements InventoryService {
 
         inventoryRepository.deleteFutureInventory(roomId, LocalDate.now());
 
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Hoteldto> searchHotels(HotelSearchRequestDto hotelSearchRequestDto) {
+        Long daysCount= ChronoUnit.DAYS.between(hotelSearchRequestDto.getStartDate(),hotelSearchRequestDto.getEndDate())+1;
+        Pageable pageable= PageRequest.of(hotelSearchRequestDto.getPage(), hotelSearchRequestDto.getSize());
+     Page<Hotel> hotelpage=inventoryRepository.findAvailableHotels(hotelSearchRequestDto.getCity(),hotelSearchRequestDto.getRoomCount(),hotelSearchRequestDto.getStartDate(),hotelSearchRequestDto.getEndDate(),daysCount,pageable);
+     return hotelpage.map(hotel ->  modelMapper.map(hotel,Hoteldto.class));
     }
 }
