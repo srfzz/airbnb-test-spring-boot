@@ -24,15 +24,15 @@ public class Room {
 
     @ManyToOne()
     @ToString.Exclude
-    @JoinColumn(name = "hotel_id",nullable = false)
+    @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
 
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "room",orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "room", orphanRemoval = true, fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<Inventory> inventories;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "room",orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "room", orphanRemoval = true, fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<Booking> bookings;
 
@@ -40,7 +40,7 @@ public class Room {
     @Column(nullable = false)
     private String type;
 
-    @Column(nullable = false,precision =  10,scale = 2)
+    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal basePrice;
 
     @Column(columnDefinition = "TEXT[]")

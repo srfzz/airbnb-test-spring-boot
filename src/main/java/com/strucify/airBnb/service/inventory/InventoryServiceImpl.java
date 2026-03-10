@@ -20,7 +20,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -37,9 +36,8 @@ public class InventoryServiceImpl implements InventoryService {
     @Transactional
     public void initializeRoomsForAYear(Room room) {
         LocalDate today = LocalDate.now();
-        LocalDate enddate=today.plusYears(1);
-        for(;today.isAfter(enddate);today.plusDays(1))
-        {
+        LocalDate enddate = today.plusYears(1);
+        for (; today.isAfter(enddate); today.plusDays(1)) {
             Inventory inventory = Inventory.builder()
                     .hotel(room.getHotel())
                     .room(room)
@@ -53,21 +51,20 @@ public class InventoryServiceImpl implements InventoryService {
         }
 
 
-
     }
 
     @Override
     @Transactional
     public void initializeInventoryIfMissing(Room room) {
         LocalDate today = LocalDate.now();
-        LocalDate endDate=today.plusYears(1);
+        LocalDate endDate = today.plusYears(1);
         Optional<Inventory> lastInventory = inventoryRepository
                 .findFirstByRoomOrderByDateDesc(room);
-        LocalDate startDate=today;
-        if(lastInventory.isPresent()) {
-            startDate=lastInventory.get().getDate().plusDays(1);
+        LocalDate startDate = today;
+        if (lastInventory.isPresent()) {
+            startDate = lastInventory.get().getDate().plusDays(1);
         }
-        if(startDate.isAfter(endDate)) {
+        if (startDate.isAfter(endDate)) {
             log.info("Inventory already exists for room {}", room.getId());
             return;
         }
@@ -102,9 +99,9 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     @Transactional(readOnly = true)
     public Page<Hoteldto> searchHotels(HotelSearchRequestDto hotelSearchRequestDto) {
-        Long daysCount= ChronoUnit.DAYS.between(hotelSearchRequestDto.getStartDate(),hotelSearchRequestDto.getEndDate())+1;
-        Pageable pageable= PageRequest.of(hotelSearchRequestDto.getPage(), hotelSearchRequestDto.getSize());
-     Page<Hotel> hotelpage=inventoryRepository.findAvailableHotels(hotelSearchRequestDto.getCity(),hotelSearchRequestDto.getRoomCount(),hotelSearchRequestDto.getStartDate(),hotelSearchRequestDto.getEndDate(),daysCount,pageable);
-     return hotelpage.map(hotel ->  modelMapper.map(hotel,Hoteldto.class));
+        Long daysCount = ChronoUnit.DAYS.between(hotelSearchRequestDto.getStartDate(), hotelSearchRequestDto.getEndDate());
+        Pageable pageable = PageRequest.of(hotelSearchRequestDto.getPage(), hotelSearchRequestDto.getSize());
+        Page<Hotel> hotelpage = inventoryRepository.findAvailableHotels(hotelSearchRequestDto.getCity(), hotelSearchRequestDto.getRoomCount(), hotelSearchRequestDto.getStartDate(), hotelSearchRequestDto.getEndDate(), daysCount, pageable);
+        return hotelpage.map(hotel -> modelMapper.map(hotel, Hoteldto.class));
     }
 }

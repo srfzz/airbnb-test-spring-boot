@@ -30,7 +30,6 @@ public class Payment {
     @Column(nullable = false,precision = 10,scale = 2)
     private BigDecimal amount;
 
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Set<PaymentStatus> status;
@@ -39,4 +38,8 @@ public class Payment {
     private LocalDateTime createdAt;
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private Booking booking;
 }

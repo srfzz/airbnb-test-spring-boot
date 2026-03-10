@@ -1,0 +1,79 @@
+package com.strucify.airBnb.service.booking;
+
+import com.strucify.airBnb.dto.booking.BookingDto;
+import com.strucify.airBnb.dto.booking.BookingRequestDto;
+import com.strucify.airBnb.dto.guests.GuestDto;
+import com.strucify.airBnb.entity.*;
+import com.strucify.airBnb.entity.enums.BookingStatus;
+import com.strucify.airBnb.exceptions.ResourceNotFoundException;
+import com.strucify.airBnb.repository.BookingRepository;
+import com.strucify.airBnb.repository.HotelRepository;
+import com.strucify.airBnb.repository.InventoryRepository;
+import com.strucify.airBnb.repository.RoomRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.math.BigDecimal;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
+
+@Service
+@Slf4j
+
+public class BookingServiceImpl implements BookingService {
+    private final BookingRepository bookingRepository;
+    private final HotelRepository hotelRepository;
+    private final RoomRepository roomRepository;
+    private final InventoryRepository inventoryRepository;
+    private final ModelMapper modelMapper;
+
+    public BookingServiceImpl(BookingRepository bookingRepository, HotelRepository hotelRepository, RoomRepository roomRepository, InventoryRepository inventoryRepository, ModelMapper modelMapper) {
+        this.bookingRepository = bookingRepository;
+        this.hotelRepository = hotelRepository;
+        this.roomRepository = roomRepository;
+        this.inventoryRepository = inventoryRepository;
+        this.modelMapper = modelMapper;
+    }
+
+    @Override
+    @Transactional
+    public BookingDto initailzeBooking(BookingRequestDto bookingRequestDto) {
+        log.info("BookingServiceImpl initailzeBooking");
+        Hotel hotel = hotelRepository.findById(bookingRequestDto.getHotelId()).orElseThrow(() -> new ResourceNotFoundException("Hotel not found id:" + bookingRequestDto.getHotelId()));
+        Room room = roomRepository.findById(bookingRequestDto.getRoomId()).orElseThrow(() -> new ResourceNotFoundException("Room not found id:" + bookingRequestDto.getRoomId()));
+        List<Inventory> inventories = inventoryRepository.findAndLockAvailableInventory(bookingRequestDto.getHotelId(), bookingRequestDto.getRoomId(), bookingRequestDto.getCheckInDate(), bookingRequestDto.getCheckOutDate(), bookingRequestDto.getRoomsCount());
+        Long daysCount = ChronoUnit.DAYS.between(bookingRequestDto.getCheckInDate(), bookingRequestDto.getCheckOutDate());
+        if (inventories.size() != daysCount) {
+            throw new IllegalStateException("Rooms Are Not Available any More !");
+
+        }
+        for (Inventory inventory : inventories) {
+            inventory.setReservedCount(inventory.getReservedCount() + bookingRequestDto.getRoomsCount());
+        }
+        inventoryRepository.saveAll(inventories);
+
+        User user = User.builder()
+                .id(1L)
+                .build();
+        Booking booking = Booking.builder()
+                .hotel(hotel)
+                .room(room)
+                .checkInDate(bookingRequestDto.getCheckInDate())
+                .checkOutDate(bookingRequestDto.getCheckOutDate())
+                .status(BookingStatus.RESERVED)
+                .roomsCount(inventories.size())
+                .user(user)
+                .amount(BigDecimal.ZERO)
+                .build();
+        bookingRepository.save(booking);
+
+        return modelMapper.map(booking, BookingDto.class);
+    }
+
+    @Override
+    public BookingDto addGuests(Long bookingId, GuestDto guestDto) {
+        return null;
+    }
+}

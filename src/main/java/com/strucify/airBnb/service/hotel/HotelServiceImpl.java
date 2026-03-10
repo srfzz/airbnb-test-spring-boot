@@ -1,6 +1,8 @@
 package com.strucify.airBnb.service.hotel;
 
+import com.strucify.airBnb.controller.hotel.HotelInfoDto;
 import com.strucify.airBnb.dto.hotelDto.Hoteldto;
+import com.strucify.airBnb.dto.roomDto.RoomDto;
 import com.strucify.airBnb.entity.Hotel;
 import com.strucify.airBnb.exceptions.ResourceNotFoundException;
 import com.strucify.airBnb.repository.HotelRepository;
@@ -10,6 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -87,6 +92,13 @@ public class HotelServiceImpl implements HotelService {
         {
             hotel.getRooms().forEach(inventoryService::initializeInventoryIfMissing);
         }
+    }
+
+    @Override
+    public HotelInfoDto getHotelInfo(Long hotelId) {
+        Hotel hotel=hotelRepository.findById(hotelId).orElseThrow(()->new ResourceNotFoundException("Hotel not found"));
+     List<RoomDto> roomDto= hotel.getRooms().stream().map((element) -> modelMapper.map(element, RoomDto.class)).toList();
+     return HotelInfoDto.builder().hotel(modelMapper.map(hotel,Hoteldto.class)).rooms(roomDto).build();
     }
 
 
