@@ -47,10 +47,10 @@ public class JwtService {
 
     public Long getUserId(String token) {
         Claims claims = Jwts.parser()
-                .verifyWith(getSecretKey(token))
+                .verifyWith(getSecretKey(secretKey))
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
-        return claims.get("id", Long.class);
+        return Long.valueOf(claims.getSubject());
     }
 }

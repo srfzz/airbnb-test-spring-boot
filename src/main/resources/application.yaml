@@ -18,4 +18,4 @@ server:
     context-path: /api/v1
 debug: true
 jwt:
-  secretKey: Lv6N3,JE+$1RHMzzK,p]V$fJ7{i;mj%g1cv5(bl5rsN
+  secretKey: U2VuaW9yRGV2ZWxvcGVyU2VjcmV0S2V5Rm9yQWlyQm5iQ2xvbmUyMDI2

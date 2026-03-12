@@ -9,6 +9,8 @@ import com.strucify.airBnb.exceptions.ResourceNotFoundException;
 import com.strucify.airBnb.repository.*;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,9 +56,7 @@ public class BookingServiceImpl implements BookingService {
         }
         inventoryRepository.saveAll(inventories);
 
-        User user = User.builder()
-                .id(1L)
-                .build();
+
         Booking booking = Booking.builder()
                 .hotel(hotel)
                 .room(room)
@@ -64,7 +64,7 @@ public class BookingServiceImpl implements BookingService {
                 .checkOutDate(bookingRequestDto.getCheckOutDate())
                 .status(BookingStatus.RESERVED)
                 .roomsCount(inventories.size())
-                .user(user)
+                .user(returncurrentUser())
                 .amount(BigDecimal.ZERO)
                 .build();
         bookingRepository.save(booking);
@@ -110,7 +110,7 @@ public class BookingServiceImpl implements BookingService {
                 0
         );
 
-       
+
         inventories.forEach(inventory -> {
             int updatedReservedCount = inventory.getReservedCount() - booking.getRoomsCount();
             inventory.setReservedCount(Math.max(0, updatedReservedCount)); // Safety check to never go below 0
@@ -125,9 +125,8 @@ public class BookingServiceImpl implements BookingService {
     }
 
     public User returncurrentUser() {
-        User user = User.builder()
-                .id(1L)
-                .build();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
         return user;
     }
 }
