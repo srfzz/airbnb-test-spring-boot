@@ -6,10 +6,15 @@ import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -19,12 +24,12 @@ import java.util.Set;
 @Builder
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "app_users")
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true,nullable = false)
-    private  String email;
+    @Column(unique = true, nullable = false)
+    private String email;
     private String password;
     private String name;
 
@@ -32,17 +37,17 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Set<Role> role;
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<Booking> bookings;
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<Guest> guests;
 
-      @OneToMany(mappedBy = "owner",fetch = FetchType.LAZY)
-      @ToString.Exclude
-      private List<Hotel> hotels;
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<Hotel> hotels;
 
     @Column(nullable = false, updatable = false)
     @CreatedDate
@@ -51,6 +56,13 @@ public class User {
     private LocalDateTime updatedAt;
 
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return role.stream().map(role -> new SimpleGrantedAuthority(role.name())).collect(Collectors.toSet());
+    }
 
-
+    @Override
+    public String getUsername() {
+        return email;
+    }
 }
