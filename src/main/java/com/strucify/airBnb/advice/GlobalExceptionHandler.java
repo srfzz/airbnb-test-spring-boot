@@ -3,11 +3,13 @@ package com.strucify.airBnb.advice;
 
 import com.strucify.airBnb.exceptions.ResourceAlreadyExistsException;
 import com.strucify.airBnb.exceptions.ResourceNotFoundException;
+import io.jsonwebtoken.JwtException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.View;
 
+import java.nio.file.AccessDeniedException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -124,6 +127,37 @@ public class GlobalExceptionHandler {
                 .build();
 
         return new ResponseEntity<>(new ApiResponse<>(apiError), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<ApiResponse<?>> handleAuthenticationException(AuthenticationException ex) {
+        ApiError apiError = ApiError.builder()
+                .status(HttpStatus.UNAUTHORIZED)
+                .message(ex.getMessage())
+                .build();
+
+        return new ResponseEntity<>(new ApiResponse<>(apiError), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(JwtException.class)
+    public ResponseEntity<ApiResponse<?>> handleJwtException(JwtException ex) {
+        HttpStatus status = HttpStatus.UNAUTHORIZED;
+        ApiError apiError = ApiError.builder()
+                .status(status)
+                .message(ex.getMessage())
+                .build();
+        return new ResponseEntity<>(new ApiResponse<>(apiError), status);
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ApiResponse<?>> handleAccessDeniedException(AccessDeniedException ex) {
+        HttpStatus status = HttpStatus.FORBIDDEN;
+        ApiError apiError = ApiError.builder()
+                .status(status)
+                .message(ex.getMessage())
+                .build();
+        return new ResponseEntity<>(new ApiResponse<>(apiError), status);
+
     }
 
     private ResponseEntity<ApiResponse<?>> buildErrorResponseEntity(ApiError apiError) {

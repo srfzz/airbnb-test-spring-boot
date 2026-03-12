@@ -8,9 +8,10 @@ import com.strucify.airBnb.entity.User;
 import com.strucify.airBnb.exceptions.ResourceNotFoundException;
 import com.strucify.airBnb.repository.HotelRepository;
 import com.strucify.airBnb.service.inventory.InventoryService;
+import com.strucify.airBnb.util.SecurityUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,7 +36,7 @@ public class HotelServiceImpl implements HotelService {
 
         Hotel hotel = modelMapper.map(hoteldto, Hotel.class);
         hotel.setActive(false);
-        hotel.setOwner((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        hotel.setOwner(SecurityUtils.getCurrentuser());
 
         Hotel savedHotel = hotelRepository.save(hotel);
         log.info("Hotel saved successfully");
@@ -46,15 +47,19 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     @Transactional(readOnly = true)
+    @PreAuthorize("@hotelSecurity.isOwner(#hotelId)")
     public Hoteldto getByHotelId(Long hotelId) {
         log.info("Getting hotel by hotelId {}", hotelId);
         Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(() -> new ResourceNotFoundException("Hotel not found"));
+        User currentuser = SecurityUtils.getCurrentuser();
+
         log.info("Hotel found successfully");
         return modelMapper.map(hotel, Hoteldto.class);
 
     }
 
     @Override
+    @PreAuthorize("@hotelSecurity.isOwner(#id)")
     public Hoteldto updateHotelById(Long id, Hoteldto hoteldto) {
         Hotel hotel = hotelRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Hotel not found"));
 
@@ -66,6 +71,8 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
+    @Transactional
+    @PreAuthorize("@hotelSecurity.isOwner(#id)")
     public void deleteHotelById(Long id) {
         Hotel hotel = hotelRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Hotel not found"));
 
@@ -75,6 +82,8 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
+    @Transactional
+    @PreAuthorize("@hotelSecurity.isOwner(#id)")
     public Hoteldto partialUpdateHotelById(Long id, Hoteldto hoteldto) {
 
         log.info("Patching hotel ID {}: updates {}", id, hoteldto);
@@ -84,6 +93,7 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
+    @PreAuthorize("@hotelSecurity.isOwner(#hotelId)")
     public void setActiveHotel(Long hotelId) {
         Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(() -> new ResourceNotFoundException("Hotel not found"));
         hotel.setActive(!hotel.getActive());
@@ -95,6 +105,7 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public HotelInfoDto getHotelInfo(Long hotelId) {
         Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(() -> new ResourceNotFoundException("Hotel not found"));
         List<RoomDto> roomDto = hotel.getRooms().stream().map((element) -> modelMapper.map(element, RoomDto.class)).toList();
