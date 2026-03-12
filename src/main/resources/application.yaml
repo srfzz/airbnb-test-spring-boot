@@ -17,3 +17,5 @@ server:
   servlet:
     context-path: /api/v1
 debug: true
+jwt:
+  secretKey: Lv6N3,JE+$1RHMzzK,p]V$fJ7{i;mj%g1cv5(bl5rsN
