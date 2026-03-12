@@ -1,13 +1,11 @@
 package com.strucify.airBnb.strategy;
 
 import com.strucify.airBnb.entity.Inventory;
-import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
-@Service
 public class UrgencyPricingStrategy implements PricingStrategy {
     private final PricingStrategy pricingStrategy;
 

@@ -3,11 +3,10 @@ package com.strucify.airBnb.strategy;
 
 import com.strucify.airBnb.entity.Inventory;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
-@Service
+
 @Slf4j
 public class HolidayPricingStrategy implements PricingStrategy {
     private final PricingStrategy pricingStrategy;

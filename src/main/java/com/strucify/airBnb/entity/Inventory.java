@@ -48,7 +48,7 @@ public class Inventory {
     @Column(nullable = false, precision = 5, scale = 2)
     private BigDecimal surgeFactor;
 
-    @Column(nullable = false, precision = 5, scale = 2)
+    @Column(nullable = false, precision = 12, scale = 2)
     private BigDecimal price;
 
     private String city;
