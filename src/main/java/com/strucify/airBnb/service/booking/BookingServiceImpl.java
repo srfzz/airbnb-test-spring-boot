@@ -3,6 +3,7 @@ package com.strucify.airBnb.service.booking;
 import com.strucify.airBnb.dto.booking.BookingDto;
 import com.strucify.airBnb.dto.booking.BookingRequestDto;
 import com.strucify.airBnb.dto.guests.GuestDto;
+import com.strucify.airBnb.dto.report.HotelReportDto;
 import com.strucify.airBnb.entity.*;
 import com.strucify.airBnb.entity.enums.BookingStatus;
 import com.strucify.airBnb.exceptions.ResourceNotFoundException;
@@ -129,6 +130,15 @@ public class BookingServiceImpl implements BookingService {
         Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(() -> new ResourceNotFoundException("Hotel not found id:" + hotelId));
         List<Booking> bookings = bookingRepository.findBookingByHotel(hotel);
         return bookings.stream().map(booking -> modelMapper.map(booking, BookingDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    @PreAuthorize("@hotelSecurity.isOwner(#hotelId)")
+    public HotelReportDto fetchReports(Long hotelId, LocalDateTime startDate, LocalDateTime endDate) {
+        Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(() -> new ResourceNotFoundException("Hotel not found id:" + hotelId));
+
+        return bookingRepository.getHotelReportData(hotelId, startDate, endDate);
     }
 
     public boolean hasBookingExpired(Booking booking) {

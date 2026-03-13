@@ -6,11 +6,12 @@ import com.strucify.airBnb.dto.report.HotelReportDto;
 import com.strucify.airBnb.service.booking.BookingService;
 import com.strucify.airBnb.service.hotel.HotelServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
@@ -79,6 +80,15 @@ public class HotelController {
     }
 
     @GetMapping("/{hotelId}/reports")
-    public ResponseEntity<HotelReportDto> hotelreports(@PathVariable Long hotelId, @RequestParam("startDate") LocalDate startDate, @RequestParam("endDate") LocalDate endDate) {
+    public ResponseEntity<HotelReportDto> hotelreports(@PathVariable Long hotelId, @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDateTime startDate,
+                                                       @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDateTime endDate) {
+
+        if (endDate == null) {
+            endDate = LocalDateTime.now();
+        }
+        if (startDate == null) {
+            startDate = LocalDateTime.now().minusDays(30);
+        }
+        return ResponseEntity.ok().body(bookingService.fetchReports(hotelId, startDate, endDate));
     }
 }
