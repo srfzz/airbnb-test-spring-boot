@@ -58,13 +58,19 @@ public class AuthService {
 
     @Transactional
     public UserDto register(SignupRequestDto signupRequestDto) {
+        log.info("signupRequestDto={}", signupRequestDto);
         Boolean exists = userRepository.existsByEmail(signupRequestDto.getEmail());
         if (exists) {
             throw new ResourceAlreadyExistsException("Email already exists");
         }
         User newUser = modelMapper.map(signupRequestDto, User.class);
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
-        newUser.setRole(Set.of(Role.ROLE_GUEST));
+
+        if (signupRequestDto.getRole() != null && !signupRequestDto.getRole().isEmpty()) {
+            newUser.setRole(signupRequestDto.getRole());
+        } else {
+            newUser.setRole(Set.of(Role.ROLE_GUEST));
+        }
         User savedUser = userRepository.save(newUser);
         return modelMapper.map(savedUser, UserDto.class);
 
