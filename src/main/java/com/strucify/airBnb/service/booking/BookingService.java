@@ -14,4 +14,6 @@ public interface BookingService {
     BookingDto addGuests(Long bookingId, List<GuestDto> guestDto);
 
     void cancelExpiredBooking(Booking booking);
+
+    List<BookingDto> getAllBookingByHotel(Long hotelId);
 }

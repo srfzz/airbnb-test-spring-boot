@@ -112,5 +112,14 @@ public class HotelServiceImpl implements HotelService {
         return HotelInfoDto.builder().hotel(modelMapper.map(hotel, Hoteldto.class)).rooms(roomDto).build();
     }
 
+    @Override
+    public List<Hoteldto> getAllHotels() {
+        log.info("Getting all hotels for current logged in User");
+        User user = SecurityUtils.getCurrentuser();
+        List<Hotel> hotels = hotelRepository.findByOwner((user));
+        List<Hoteldto> hoteldtos = hotels.stream().map((element) -> modelMapper.map(element, Hoteldto.class)).toList();
+        return hoteldtos;
+    }
+
 
 }

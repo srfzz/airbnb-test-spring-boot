@@ -9,6 +9,7 @@ import com.strucify.airBnb.exceptions.ResourceNotFoundException;
 import com.strucify.airBnb.repository.*;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -118,6 +120,15 @@ public class BookingServiceImpl implements BookingService {
 
         inventoryRepository.saveAll(inventories);
         log.info("Inventory freed for expired booking id: {}", booking.getId());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    @PreAuthorize("@hotelSecurity.isOwner(#hotelId)")
+    public List<BookingDto> getAllBookingByHotel(Long hotelId) {
+        Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(() -> new ResourceNotFoundException("Hotel not found id:" + hotelId));
+        List<Booking> bookings = bookingRepository.findBookingByHotel(hotel);
+        return bookings.stream().map(booking -> modelMapper.map(booking, BookingDto.class)).collect(Collectors.toList());
     }
 
     public boolean hasBookingExpired(Booking booking) {
