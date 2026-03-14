@@ -34,7 +34,9 @@ public class InventoryServiceImpl implements InventoryService {
     private final HotelMinPriceRepository hotelMinPriceRepository;
     private final RoomRepository roomRepository;
 
-    public InventoryServiceImpl(InventoryRepository inventoryRepository, ModelMapper modelMapper, HotelMinPriceRepository hotelMinPriceRepository, RoomRepository roomRepository) {
+
+    public InventoryServiceImpl(InventoryRepository inventoryRepository, ModelMapper modelMapper,
+                                HotelMinPriceRepository hotelMinPriceRepository, RoomRepository roomRepository) {
         this.inventoryRepository = inventoryRepository;
         this.modelMapper = modelMapper;
         this.hotelMinPriceRepository = hotelMinPriceRepository;
@@ -136,6 +138,8 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     public void updateInventory(Long roomId, UpdateInventoryRequestDto updateInventoryRequestDto) {
         Room room = roomRepository.findById(roomId).orElseThrow(() -> new ResourceNotFoundException("Room Not found"));
-        
+        inventoryRepository.findAndLockAvailableInventoryByRoom(roomId, updateInventoryRequestDto.getStartDate(), updateInventoryRequestDto.getEndDate());
+        inventoryRepository.updateInventory(updateInventoryRequestDto.getSurgefactor(), updateInventoryRequestDto.getClosed(), roomId, updateInventoryRequestDto.getStartDate(), updateInventoryRequestDto.getEndDate());
+
     }
 }

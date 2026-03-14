@@ -1,5 +1,6 @@
 package com.strucify.airBnb.entity;
 
+import com.strucify.airBnb.entity.enums.Gender;
 import com.strucify.airBnb.entity.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,6 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
@@ -32,6 +34,9 @@ public class User implements UserDetails {
     private String email;
     private String password;
     private String name;
+    private LocalDate birthDate;
+    private String phoneNumber;
+    private Gender gender;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)

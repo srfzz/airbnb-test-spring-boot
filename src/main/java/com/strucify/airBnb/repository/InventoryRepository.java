@@ -12,8 +12,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +48,19 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long> {
             @Param("roomsCount") Integer roomsCount);
 
 
+    @Query("""
+            select i from Inventory i where i.room.id=:roomId 
+             and i.date >= :startDate AND i.date < :endDate
+            """)
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Modifying
+    List<Inventory> findAndLockAvailableInventoryByRoom(
+
+            @Param("roomId") Long roomId,
+            @Param("startDate") LocalDate startDate,
+            @Param("endDate") LocalDate endDate);
+
+
     List<Inventory> findByHotelAndDateBetween(Hotel hotel, LocalDate startDate, LocalDate endDate);
 
     List<Inventory> findByRoom(Room room);
@@ -56,23 +69,18 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long> {
 
 
     @Modifying
-
     @Query("""
-                        update Inventory i set i.surgeFactor=:surgefactor,i.closed=:closed
+                        update Inventory i set i.surgeFactor=:surgeFactor,i.closed=:closed
                         where i.room.id=:roomId
                         and i.date between :startDate and :endDate
-                        and (i.totalCount - i.bookedCount) >= :numberOfRooms
+            
                         and i.closed=false
             """)
-    @Transactional()
-    void updateInventory(@Param("surgefactor") Long surgefactor,
+    void updateInventory(@Param("surgeFactor") BigDecimal surgeFactor,
                          @Param("closed") Boolean closed,
                          @Param("roomId") Long roomId,
-                         @Param("numberOfRooms") Integer numberOfRooms,
                          @Param("startDate") LocalDate startDate,
-                         @Param("endDate") LocalDate endDate
-
-    );
+                         @Param("endDate") LocalDate endDate);
 
 }
 

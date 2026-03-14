@@ -3,6 +3,7 @@ package com.strucify.airBnb.repository;
 import com.strucify.airBnb.dto.report.HotelReportDto;
 import com.strucify.airBnb.entity.Booking;
 import com.strucify.airBnb.entity.Hotel;
+import com.strucify.airBnb.entity.User;
 import com.strucify.airBnb.entity.enums.BookingStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -28,4 +29,6 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
             "AND b.createdAt BETWEEN :startDate AND :endDate " +
             "AND b.status = 'CONFIRMED'")
     HotelReportDto getHotelReportData(Long hotelId, LocalDateTime startDate, LocalDateTime endDate);
+
+    List<Booking> findBookingByUser(User databaseUser);
 }

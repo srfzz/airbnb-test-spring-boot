@@ -19,3 +19,9 @@ server:
 debug: true
 jwt:
   secretKey: U2VuaW9yRGV2ZWxvcGVyU2VjcmV0S2V5Rm9yQWlyQm5iQ2xvbmUyMDI2
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+  api-docs:
+    path: /v3/api-docs

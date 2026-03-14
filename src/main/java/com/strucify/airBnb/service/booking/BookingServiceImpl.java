@@ -32,14 +32,16 @@ public class BookingServiceImpl implements BookingService {
     private final InventoryRepository inventoryRepository;
     private final ModelMapper modelMapper;
     private final GuestRepository guestRepository;
+    private final UserRepository userRepository;
 
-    public BookingServiceImpl(BookingRepository bookingRepository, HotelRepository hotelRepository, RoomRepository roomRepository, InventoryRepository inventoryRepository, ModelMapper modelMapper, GuestRepository guestRepository) {
+    public BookingServiceImpl(BookingRepository bookingRepository, HotelRepository hotelRepository, RoomRepository roomRepository, InventoryRepository inventoryRepository, ModelMapper modelMapper, GuestRepository guestRepository, UserRepository userRepository) {
         this.bookingRepository = bookingRepository;
         this.hotelRepository = hotelRepository;
         this.roomRepository = roomRepository;
         this.inventoryRepository = inventoryRepository;
         this.modelMapper = modelMapper;
         this.guestRepository = guestRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -139,6 +141,16 @@ public class BookingServiceImpl implements BookingService {
         Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(() -> new ResourceNotFoundException("Hotel not found id:" + hotelId));
 
         return bookingRepository.getHotelReportData(hotelId, startDate, endDate);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<BookingDto> getAllBookingByOwner() {
+        User sesionUser = returncurrentUser();
+        User databaseUser = userRepository.findById(sesionUser.getId()).orElseThrow(() -> new ResourceNotFoundException("User Not Found"));
+        List<Booking> bookings = bookingRepository.findBookingByUser(databaseUser);
+        return bookings.stream().map(booking -> modelMapper.map(booking, BookingDto.class)).collect(Collectors.toList());
+
     }
 
     public boolean hasBookingExpired(Booking booking) {
