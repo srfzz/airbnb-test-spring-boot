@@ -2,10 +2,14 @@ package com.strucify.airBnb.service.inventory;
 
 import com.strucify.airBnb.dto.HotelMinPrice.HotelMinPriceDto;
 import com.strucify.airBnb.dto.HotelSearch.HotelSearchRequestDto;
+import com.strucify.airBnb.dto.inventory.InventoryDto;
+import com.strucify.airBnb.dto.inventory.UpdateInventoryRequestDto;
 import com.strucify.airBnb.entity.Inventory;
 import com.strucify.airBnb.entity.Room;
+import com.strucify.airBnb.exceptions.ResourceNotFoundException;
 import com.strucify.airBnb.repository.HotelMinPriceRepository;
 import com.strucify.airBnb.repository.InventoryRepository;
+import com.strucify.airBnb.repository.RoomRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -20,6 +24,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -27,11 +32,13 @@ public class InventoryServiceImpl implements InventoryService {
     private final InventoryRepository inventoryRepository;
     private final ModelMapper modelMapper;
     private final HotelMinPriceRepository hotelMinPriceRepository;
+    private final RoomRepository roomRepository;
 
-    public InventoryServiceImpl(InventoryRepository inventoryRepository, ModelMapper modelMapper, HotelMinPriceRepository hotelMinPriceRepository) {
+    public InventoryServiceImpl(InventoryRepository inventoryRepository, ModelMapper modelMapper, HotelMinPriceRepository hotelMinPriceRepository, RoomRepository roomRepository) {
         this.inventoryRepository = inventoryRepository;
         this.modelMapper = modelMapper;
         this.hotelMinPriceRepository = hotelMinPriceRepository;
+        this.roomRepository = roomRepository;
     }
 
     @Override
@@ -79,7 +86,9 @@ public class InventoryServiceImpl implements InventoryService {
                     .bookedCount(0)
                     .city(room.getHotel().getCity())
                     .surgeFactor(BigDecimal.ONE)
-                    .totalCount(room.getTotalCount())
+                    .totalCount(room.getTotalCount() != null ? room.getTotalCount() : 0
+                    )
+                    .reservedCount(0)
                     .price(BigDecimal.ZERO)
                     .closed(false)
                     .build();
@@ -113,5 +122,20 @@ public class InventoryServiceImpl implements InventoryService {
         Pageable pageable = PageRequest.of(hotelSearchRequestDto.getPage(), hotelSearchRequestDto.getSize());
         Page<HotelMinPriceDto> hotelpage = hotelMinPriceRepository.findAvailableHotels(hotelSearchRequestDto.getCity(), hotelSearchRequestDto.getRoomCount(), hotelSearchRequestDto.getStartDate(), hotelSearchRequestDto.getEndDate(), daysCount, pageable);
         return hotelpage;
+    }
+
+    @Override
+    public List<InventoryDto> getAllInventoryByRoom(Long roomId) {
+        log.info("Getting all inventory for room {}", roomId);
+        Room room = roomRepository.findById(roomId).orElseThrow(() -> new ResourceNotFoundException("Room Not found"));
+        List<Inventory> inventories = inventoryRepository.findByRoomOrderByDateDesc(room);
+
+        return inventories.stream().map(dto -> modelMapper.map(dto, InventoryDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void updateInventory(Long roomId, UpdateInventoryRequestDto updateInventoryRequestDto) {
+        Room room = roomRepository.findById(roomId).orElseThrow(() -> new ResourceNotFoundException("Room Not found"));
+        
     }
 }
